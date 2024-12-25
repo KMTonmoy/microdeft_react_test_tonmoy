@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 const Courses = () => {
     const [courses, setCourses] = useState([]);
     const [loading, setLoading] = useState(true);
-    const token = localStorage.getItem('authToken');
+    const token = typeof window !== 'undefined' ? localStorage.getItem('authToken') : null;
     const router = useRouter();
 
     useEffect(() => {
@@ -40,7 +40,7 @@ const Courses = () => {
                 text: 'Please log in to view the courses.',
                 confirmButtonText: 'OK',
             }).then(() => {
-                router.push('/login')
+                router.push('/login');
             });
         }
     }, [token, router]);
