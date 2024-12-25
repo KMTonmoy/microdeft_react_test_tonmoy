@@ -1,0 +1,25 @@
+{
+    "banners": [
+        {
+            "id": 1,
+            "url": "https://static.vecteezy.com/system/resources/thumbnails/044/280/984/small_2x/stack-of-books-on-a-brown-background-concept-for-world-book-day-photo.jpg",
+            "heading": "Welcome to Learnify",
+            "description": "Master new skills at your own pace with Learnify. Join thousands of learners today.",
+            "text": "Explore Now"
+        },
+        {
+            "id": 2,
+            "url": "https://5.imimg.com/data5/SELLER/Default/2023/5/306087737/EX/HE/YE/10918976/react-expert-500x500.jpg",
+            "heading": "Become a React Expert",
+            "description": "Get hands-on experience with React and build amazing web applications. Start learning now!",
+            "text": "Start Learning"
+        },
+        {
+            "id": 3,
+            "url": "https://img.freepik.com/free-vector/goal-achievement-teamwork-business-concept-career-growth-cooperation-development-project_107791-29.jpg",
+            "heading": "Enhance Your Career",
+            "description": "Boost your career with the latest tech skills and job-ready courses.",
+            "text": "Get Started"
+        }
+    ]
+}
