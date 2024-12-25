@@ -46,11 +46,15 @@ const Page = () => {
 
                 Swal.fire({
                     title: 'Registration Successful!',
-                    text: 'You are now registered. Redirecting to your dashboard...',
+                    text: 'You are now registered. Redirecting to Home...',
                     icon: 'success',
                     confirmButtonText: 'Okay'
                 }).then(() => {
                     router.push('/');
+                    setTimeout(() => {
+                        router.push('/');
+                        window.location.reload();
+                    }, 3000);
                 });
             } else {
                 setMessage(data.message || 'Something went wrong.');

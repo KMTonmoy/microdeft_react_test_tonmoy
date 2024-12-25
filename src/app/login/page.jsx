@@ -47,6 +47,9 @@ const LoginForm = () => {
                     confirmButtonText: 'OK',
                 }).then(() => {
                     router.push('/');
+                    setTimeout(() => {
+                        window.location.reload(); 
+                    }, 3000);  
                 });
             } else {
                 setError(data.status_message || 'Login failed. Please try again.');
