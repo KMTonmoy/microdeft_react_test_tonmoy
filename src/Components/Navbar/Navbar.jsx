@@ -1,12 +1,23 @@
 'use client'
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem('authToken');
+    setIsLoggedIn(!!token);
+  }, []);
 
   const toggleMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('authToken');
+    setIsLoggedIn(false);
   };
 
   return (
@@ -17,12 +28,22 @@ const Navbar = () => {
         </div>
         <div className="hidden md:flex space-x-6 mx-auto">
           <a href="/" className="text-gray-800 hover:text-gray-600 transition-colors">Home</a>
-          <a href="/courses" className="text-gray-800 hover:text-gray-600 transition-colors">Courses</a>
+          {isLoggedIn && (
+            <a href="/courses" className="text-gray-800 hover:text-gray-600 transition-colors">Courses</a>
+          )}
           <a href="/about" className="text-gray-800 hover:text-gray-600 transition-colors">About</a>
+          <a href="/contact" className="text-gray-800 hover:text-gray-600 transition-colors">Contact</a>
+          <a href="/service" className="text-gray-800 hover:text-gray-600 transition-colors">Service</a>
         </div>
         <div className="hidden md:flex space-x-4">
-          <a href="/login" className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-6 py-2 rounded-lg">Login</a>
-          <a href="/signup" className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-6 py-2 rounded-lg">Sign Up</a>
+          {!isLoggedIn ? (
+            <>
+              <a href="/login" className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-6 py-2 rounded-lg">Login</a>
+              <a href="/signup" className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-6 py-2 rounded-lg">Sign Up</a>
+            </>
+          ) : (
+            <button onClick={handleLogout} className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-6 py-2 rounded-lg">Logout</button>
+          )}
         </div>
         <button className="md:hidden text-gray-800" onClick={toggleMenu}>
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="h-6 w-6">
@@ -47,11 +68,19 @@ const Navbar = () => {
             </button>
           </div>
           <a href="/" className="block py-2 px-4 text-gray-800 hover:text-gray-600">Home</a>
-          <a href="/courses" className="block py-2 px-4 text-gray-800 hover:text-gray-600">Courses</a>
+          {isLoggedIn && (
+            <a href="/courses" className="block py-2 px-4 text-gray-800 hover:text-gray-600">Courses</a>
+          )}
           <a href="/about" className="block py-2 px-4 text-gray-800 hover:text-gray-600">About</a>
           <div className="space-y-4">
-            <a href="/login" className="block bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-6 py-2 rounded-lg">Login</a>
-            <a href="/signup" className="block bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-6 py-2 rounded-lg">Sign Up</a>
+            {!isLoggedIn ? (
+              <>
+                <a href="/login" className="block bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-6 py-2 rounded-lg">Login</a>
+                <a href="/signup" className="block bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-6 py-2 rounded-lg">Sign Up</a>
+              </>
+            ) : (
+              <button onClick={handleLogout} className="block bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-6 py-2 rounded-lg">Logout</button>
+            )}
           </div>
         </motion.div>
       )}
